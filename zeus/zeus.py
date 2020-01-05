@@ -70,6 +70,8 @@ class sampler:
         # Set up Slice parameters
         self.mu = mu
         self.mus = []
+        self.nexps = []
+        self.ncons = []
         self.tune = tune
         self.maxsteps = maxsteps
         self.patience = patience
@@ -273,6 +275,9 @@ class sampler:
                 X[active] = X_prime
                 Z[active] = Z_prime
                 self.neval[i] += ncall
+
+            self.nexps.append(nexp)
+            self.ncons.append(ncon)
 
             # Tune scale factor using Robbins-Monro optimization
             if self.tune:
